@@ -10,18 +10,13 @@ const PORT = process.env.PORT || 3001;
 //boilerplate middleware data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
 
-// GET route handler for home page and notes page.
-app.get("/",function(req, res){
-    res.sendFile(path.join(__dirname, "index.html"));
-});
-
-app.get("/notes",function(req, res){
-    res.sendFile(path.join(__dirname, "notes.html"));
-});
-
+//module.export htmlRoute function passing in express app
+require("../noteTaker/public/html-route")(app);
+//require("../noteTaker/routing/api-route")(app);
 
 //server listening on port 3001
 app.listen(PORT, function(){
-    console.log("Server listening on: http://localhost:" + PORT);
+    console.log("Server listening on PORT:" + PORT);
 });

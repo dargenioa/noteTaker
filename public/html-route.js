@@ -1,6 +1,6 @@
 const path = require("path");
 
-const htmlRoute = (app) => {
+module.exports = (app) => {
 
 // GET route handler for home page and notes page.
 app.get("/notes",function(req, res){
@@ -13,4 +13,4 @@ app.get("*",function(req, res){
 };
 
 
-module.exports = htmlRoute(app);
+
