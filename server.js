@@ -1,6 +1,8 @@
 //our dependencies
 const express = require("express");
 const path = require("path");
+const htmlRoute = require("./routes/html-route");
+const apiRoute = require("./routes/api-route");
 ///const fs = require("fs");
 
 
@@ -14,8 +16,12 @@ app.use(express.json());
 app.use(express.static("public"));
 console.log(__dirname);
 
-require("./routes/html-route")(app);
-require("./routes/api-route")(app);
+
+app.use("/", htmlRoute);
+app.use("/api", apiRoute);
+
+// require("./routes/html-route")(app);
+// require("./routes/api-route")(app);
 
 
 

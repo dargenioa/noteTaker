@@ -1,26 +1,39 @@
 const path = require("path");
+const router = require("express").Router();
 //const fs = require("fs");
 
 
-module.exports = function (app) {
+router.get("/notes", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/notes.html"));
+});
 
-    // GET route handler for home page and notes page.
-    app.get("/", function (req, res) {
-        res.sendFile(path.join(__dirname, "../public/index.html"));
-    });
+router.get("/", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
+});
 
+module.exports = router;
 
-    app.get("/notes", function (req, res) {
-        res.sendFile(path.join(__dirname, "../public/notes.html"));
-    });
+// module.exports = function (app) {
 
-    // app.get("*", function (req, res) {
-    //     res.sendFile(path.join(__dirname, "../public/index.html"));
-    // });
-
-
-};
+//     // GET route handler for home page and notes page.
+//     app.get("/", function (req, res) {
+//         res.sendFile(path.join(__dirname, "../public/index.html"));
+//     });
 
 
+//     app.get("/notes", function (req, res) {
+//         res.sendFile(path.join(__dirname, "../public/notes.html"));
+//     });
 
-//uuid
+//     app.get("*", function (req, res) {
+//         res.sendFile(path.join(__dirname, "../public/index.html"));
+//     });
+// };
+
+
+//       * GET `*` - Should return the `index.html` file
+//       * The application should have a `db.json` file on the backend that will be used to
+//       * store and retrieve notes using the `fs` module.
+//       * 
+// //uuid
+
