@@ -15,12 +15,11 @@ module.exports = (app) => {
 
         let newNote = req.body;
         dbJSON.push(newNote);
-        //console.log(dbJSON);
-        //let jsonString = JSON.stringify(dbJSON);
+        console.log(dbJSON);
         res.json({ ok: true });
+        // let jsonString = JSON.stringify(dbJSON);
 
-
-        // fs.writeFile("../db/testdb.json", jsonString, (error, data) => {
+        // fs.writeFile("../db/db.json", jsonString, (error, data) => {
         //     error ? console.error(error) : console.log(JSON.parse(data))
 
     });
