@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3001;
 //boilerplate middleware data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static("public"));
 console.log(__dirname);
 
 require("./routes/html-route")(app);

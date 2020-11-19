@@ -2,11 +2,11 @@ const fs = require("fs");
 
 module.exports = (app) => {
 
-    //read JSON file
-    fs.readFile('../public/db/db.json', 'utf8', (error, data) => {
-        error ? console.error(error) : console.log(JSON.parse(data));
+    // //read JSON file
+    // fs.readFile('../public/db/db.json', 'utf8', (error, data) => {
+    //     error ? console.error(error) : console.log(JSON.parse(data));
         
-    });
+    // });
     
     app.get("/api/notes", function (req, res) {
         return res.json(data);
