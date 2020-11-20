@@ -1,6 +1,8 @@
 const fs = require("fs");
 const router = require("express").Router();
 const dbJSON = require("../db/db.json");
+const { v4: uuidv4 } = require('uuid');
+const uuid4 = uuidv4();
 //require uuid
 //const uuid = require...
 
@@ -24,14 +26,13 @@ router.post("/api/notes", function (req, res) {
 
     fs.readFile("./db/db.json", "utf8", (error, data) => {
         data = JSON.parse(data);
-        //uuid
-        let newNote = { id: 1, ...req.body };
+        let newNote = { uuid4, ...req.body };
         let allNotes = [...data, newNote];
         let jsonString = JSON.stringify(allNotes);
 
         fs.writeFile("./db/db.json", jsonString, (error, data) => {
             console.log(error);
-             res.json({ ok: true });
+            res.json({ ok: true });
 
         });
 
