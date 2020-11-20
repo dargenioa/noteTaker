@@ -16,9 +16,8 @@ app.use(express.json());
 app.use(express.static("public"));
 console.log(__dirname);
 
-
-app.use("/", htmlRoute);
-app.use("/api", apiRoute);
+app.use(apiRoute);
+app.use(htmlRoute);
 
 // require("./routes/html-route")(app);
 // require("./routes/api-route")(app);
