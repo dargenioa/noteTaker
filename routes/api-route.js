@@ -36,36 +36,61 @@ router.post("/api/notes", function (req, res) {
 
 });
 
-
-router.get("/api/notes/:id", (req, res) => {
-    dbJSON.forEach(num => {
-        if (req.params.id == num.id) {
-            console.log(req.params);
-        }
-        
-    });
-    
-    
-});
-
 router.delete("/api/notes/:id", (req, res) => {
 
-    dbJSON.forEach((num, index) => {
-        if (req.params.id == num.id) {
-            dbJSON.splice(index, 1)
-            let deletedFile = dbJSON.slice();
-            let newJSON = JSON.stringify(deletedFile)
+    fs.readFile("./db/db.json", "utf8", (error, data) => {
+        const deleteData = JSON.parse(data);
+        const newJSON = deleteData.filter(num => req.params.id !== num.id);
+        const writeFileJSON = JSON.stringify(newJSON);
 
-            fs.writeFileSync("./db/db.json", newJSON, function (err) {
-                if (err) {
-                    return console.log(err);
-                }
-                console.log("Success!");
-            })
-        };
+        fs.writeFile("./db/db.json", writeFileJSON, (error, data) => {
+            console.log(error);
+            res.json({ ok: true });
+
+        });
 
     });
+
 });
+
+// dbJSON.forEach(num => {
+//     if (req.params.id == num.id) {
+//         console.log(req.params);
+//         dbJSON.splice()
+//         let deletedFile = dbJSON.slice();
+//         let newJSON = JSON.stringify(deletedFile)
+
+//         fs.writeFile("./db/testdb.json", newJSON, function (err) {
+//             if (err) {
+//                 return console.log(err);
+//             }
+//             console.log("Success!");
+//         })
+//     };
+
+// });
+
+//     });
+
+
+// router.delete("/api/notes/:id", (req, res) => {
+
+//     dbJSON.forEach((num, index) => {
+//         if (req.params.id == num.id) {
+//             dbJSON.splice(index, 1)
+//             let deletedFile = dbJSON.slice();
+//             let newJSON = JSON.stringify(deletedFile)
+
+//             fs.writeFileSync("./db/db.json", newJSON, function (err) {
+//                 if (err) {
+//                     return console.log(err);
+//                 }
+//                 console.log("Success!");
+//             })
+//         };
+
+//     });
+// });
 
 
 // router.get("api/notes/:id", function (req, res) {
