@@ -4,9 +4,6 @@ const dbJSON = require("../db/db.json");
 const { v4: uuidv4 } = require('uuid');
 const id = uuidv4();
 
-
-//npm i uuid
-
 // //read JSON file
 router.get("/api/notes", function (req, res) {
     //res.json(dbJSON);
@@ -20,9 +17,6 @@ router.get("/api/notes", function (req, res) {
 
 });
 
-router.get("/api/notes/:id", (req, res) => {
-    res.json(dbJSON[req.params.id]);
-});
 
 router.post("/api/notes", function (req, res) {
 
@@ -40,6 +34,18 @@ router.post("/api/notes", function (req, res) {
 
     });
 
+});
+
+
+router.get("/api/notes/:id", (req, res) => {
+    dbJSON.forEach(num => {
+        if (req.params.id == num.id) {
+            console.log(req.params);
+        }
+        
+    });
+    
+    
 });
 
 router.delete("/api/notes/:id", (req, res) => {
