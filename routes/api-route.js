@@ -2,9 +2,8 @@ const fs = require("fs");
 const router = require("express").Router();
 const dbJSON = require("../db/db.json");
 const { v4: uuidv4 } = require('uuid');
-const uuid4 = uuidv4();
-//require uuid
-//const uuid = require...
+const id = uuidv4();
+
 
 //npm i uuid
 
@@ -21,12 +20,15 @@ router.get("/api/notes", function (req, res) {
 
 });
 
-router.post("/api/notes", function (req, res) {
+router.get("/api/notes/:id", (req, res) => {
+    res.json(dbJSON[req.params.id]);
+});
 
+router.post("/api/notes", function (req, res) {
 
     fs.readFile("./db/db.json", "utf8", (error, data) => {
         data = JSON.parse(data);
-        let newNote = { uuid4, ...req.body };
+        let newNote = { id, ...req.body };
         let allNotes = [...data, newNote];
         let jsonString = JSON.stringify(allNotes);
 
@@ -40,10 +42,39 @@ router.post("/api/notes", function (req, res) {
 
 });
 
-router.delete("/api/notes/:id")
-//uuid
-//read file
-//write file
+router.delete("/api/notes/:id", (req, res) => {
+
+    dbJSON.forEach((num, index) => {
+        if (req.params.id == num.id) {
+            dbJSON.splice(index, 1)
+            let deletedFile = dbJSON.slice();
+            let newJSON = JSON.stringify(deletedFile)
+
+            fs.writeFileSync("./db/db.json", newJSON, function (err) {
+                if (err) {
+                    return console.log(err);
+                }
+                console.log("Success!");
+            })
+        };
+
+    });
+});
+
+
+// router.get("api/notes/:id", function (req, res) {
+
+
+
+//     // router.delete("api/notes/:id" + id, function (req, res) {
+//     //     console.log(dataDelete.id);
+
+//     // });
+
+
+// });
+
+
 
 module.exports = router;
 
