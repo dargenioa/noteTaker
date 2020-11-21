@@ -1,6 +1,5 @@
 const fs = require("fs");
 const router = require("express").Router();
-const dbJSON = require("../db/db.json");
 const { v4: uuidv4 } = require('uuid');
 
 // //read JSON file
