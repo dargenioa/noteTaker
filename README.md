@@ -15,18 +15,21 @@
 
   ## Video Demo
 
-  ![](./utils/readmeGenerator.gif)
+  ![](./public/assets/images/noteTaker.gif)
 
 
   ## Installation
 
   To install this application the user must have node.js installed.  The node depencies that are required are path, file system express using Router and uuidv4.
+  
+  <img src="./public/assets/images/noteTakerequireddependencies.png" alt="node-dependencies">
 
- <img src="./utils/Screen Shot 2020-11-14 at 5.33.19 PM.png" alt="node-packages">
 
   ## Usage
 
-  To get started with the application, run ```node index.js``` in the terminal.  Once the user hits enter, they will be asked a series of questions relating to the table of contents in the application.  The user has an option of choosing a license which will dynamically add a badge near the title and a notice with a link to the detailed license in the License section.  When the file is created, the user will be able to update the README.md file with any videos, screenshots or other important information.
+  To get started with the application, run ```node server.js``` in the terminal to start the server.  The user will be taken to the homepage complete with a navbar and a Get Started button.  When the button is clicked, the user will be brought to notes page with the ability to save and enter notes.  The notes will stay in the application until the user deletes them.
+
+  On the backend, the application will read and write the json.db file each time a GET, POST or DELETE request is made.  The json.db file will be updated to reflect the current changes.
 
   ## License
 
@@ -40,8 +43,11 @@
   There were no contributors on this project, but collaboration is welcome.  Please feel free to reach out to me regarding changes to the application by creating an issue in Github or contacting me through email.
 
   ## Tests
+
+  The notes are deleted by selected a unique id using uuidv4. To test that the req.params has the correct information, log to the console.  Also use console.log to make sure the server is runnign and return any errors that may be occuring on the backend to reflect in the terminal.
   
-  This application was created with asynchronuous JavaScript.  The getUserInput and writeFileSync are within a try/catch block.  If a file is successfully created then 'Sucessfully wrote to README.md' will log to the console.  Otherwise, the error will be logged to the console.
+  <img src="./public/assets/images/noteTakerdbconsole.png" alt="console.log-object">
+
 
   ## Questions
 
