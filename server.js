@@ -19,11 +19,6 @@ console.log(__dirname);
 app.use(apiRoute);
 app.use(htmlRoute);
 
-// require("./routes/html-route")(app);
-// require("./routes/api-route")(app);
-
-
-
 
 //server listening on port 3001
 app.listen(PORT, function(){
