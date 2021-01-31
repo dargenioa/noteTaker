@@ -16,7 +16,7 @@
   ## Video Demo
 
   ![](./public/assets/images/noteTaker.gif)
-
+  [Deploy](https://notetakerprofessional.herokuapp.com/)
 
   ## Installation
 
